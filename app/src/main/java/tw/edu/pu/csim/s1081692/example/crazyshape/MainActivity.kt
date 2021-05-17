@@ -18,9 +18,7 @@ class MainActivity : AppCompatActivity() {
                 handv.invalidate()
             }
         })
-
-
-        handv.setOnTouchListener(object : View.OnTouchListener {
+        handv.setOnTouchListener(object:View.OnTouchListener{
             override fun onTouch(p0: View?, event: MotionEvent): Boolean {
                 var xPos = event.getX()
                 var yPos = event.getY()
