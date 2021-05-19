@@ -24,21 +24,9 @@ class HandPaint(context: Context?, attrs: AttributeSet?) : View(context, attrs) 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         canvas.drawColor(Color.BLACK)  //背景
-
         canvas.drawPath(path, paint)
     }
 
-
-    override fun onTouchEvent(event: MotionEvent): Boolean {
-        var xPos = event.getX()
-        var yPos = event.getY()
-        when (event.action) {
-            MotionEvent.ACTION_DOWN -> path.moveTo(xPos, yPos)
-            MotionEvent.ACTION_MOVE -> path.lineTo(xPos, yPos)
-        }
-        invalidate()
-        return true
-    }
 }
 
 
