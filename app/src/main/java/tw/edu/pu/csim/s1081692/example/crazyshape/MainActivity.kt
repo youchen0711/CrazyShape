@@ -15,11 +15,13 @@ import kotlinx.android.synthetic.main.activity_main.*
 public final class MyAppGlideModule : AppGlideModule()
 
 
-class MainActivity : AppCompatActivity() {
+
+class MainActivity : AppCompatActivity(),View.OnClickListener {
+    var counter: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        imgNext.setOnClickListener(this)
         val img: ImageView = findViewById(R.id.imgTitle)
         GlideApp.with(this)
             .load(R.drawable.cover)
@@ -36,4 +38,18 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
+
+    override fun onClick(v: View?) {
+        var X: Int = (1..4).random()
+        if(X==1){
+            imgNext.setImageResource(R.drawable.circle)
+        }else if(X==2){
+            imgNext.setImageResource(R.drawable.square)
+        }else if(X==3){
+            imgNext.setImageResource(R.drawable.star)
+        }else{
+            imgNext.setImageResource(R.drawable.triangle)
+        }
+    }
+
 }

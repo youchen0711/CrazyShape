@@ -29,4 +29,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/cover" />
 
+
 </androidx.constraintlayout.widget.ConstraintLayout>
