@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.annotation.GlideModule
 import com.bumptech.glide.module.AppGlideModule
+import kotlinx.android.synthetic.main.activity_game.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 @GlideModule
@@ -16,39 +17,37 @@ public final class MyAppGlideModule : AppGlideModule()
 
 
 
-class MainActivity : AppCompatActivity(),View.OnClickListener {
+class MainActivity : AppCompatActivity(){
     var counter: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        imgNext.setOnClickListener(this)
-        val img: ImageView = findViewById(R.id.imgTitle)
+
+        Toast.makeText(baseContext, "作者：賴侑辰", Toast.LENGTH_LONG).show()
+        rndShape()
+
+
         GlideApp.with(this)
             .load(R.drawable.cover)
             .override(800, 600)
-            .into(img)
+            .into(imgTitle)
 
-        Toast.makeText(baseContext, "作者：賴侑辰", Toast.LENGTH_LONG).show()
 
-        imgNext.setOnLongClickListener(object : View.OnLongClickListener {
-            override fun onLongClick(p0: View?): Boolean {
-                intent = Intent(this@MainActivity, GameActivity::class.java)
-                startActivity(intent)
-                return true
+
+        imgNext.setOnClickListener(object:View.OnClickListener{
+            override fun onClick(p0: View?) {
+                rndShape()
             }
         })
     }
 
-    override fun onClick(v: View?) {
-        var X: Int = (1..4).random()
-        if(X==1){
-            imgNext.setImageResource(R.drawable.circle)
-        }else if(X==2){
-            imgNext.setImageResource(R.drawable.square)
-        }else if(X==3){
-            imgNext.setImageResource(R.drawable.star)
-        }else{
-            imgNext.setImageResource(R.drawable.triangle)
+    fun rndShape(){
+        counter = (1..4).random()
+        when (counter){
+            1->imgNext.setImageResource(R.drawable.circle)
+            2->imgNext.setImageResource(R.drawable.square)
+            3->imgNext.setImageResource(R.drawable.star)
+            4->imgNext.setImageResource(R.drawable.triangle)
         }
     }
 
