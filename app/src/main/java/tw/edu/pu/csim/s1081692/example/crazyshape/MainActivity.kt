@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity(){
                     putExtra("形狀", counter)
                 }
                 startActivity(intent)
+                startActivityForResult(intent, 101)
                 return true
             }
         })
@@ -60,4 +61,12 @@ class MainActivity : AppCompatActivity(){
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 101){
+            intent = Intent(this@MainActivity, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
 }
